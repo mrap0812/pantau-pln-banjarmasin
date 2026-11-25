@@ -1,0 +1,22 @@
+name: Ambil berita PLN Banjarmasin
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  berita:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python alat/ambil_berita.py
+      - name: Simpan jika berubah
+        run: |
+          git config user.name "pantau-bot"
+          git config user.email "pantau-bot@users.noreply.github.com"
+          git add data/berita.json
+          git diff --cached --quiet || (git commit -m "berita: perbarui otomatis" && git push)

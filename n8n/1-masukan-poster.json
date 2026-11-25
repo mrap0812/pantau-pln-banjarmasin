@@ -1,0 +1,309 @@
+{
+ "name": "Pantau PLN – Masukan poster (form + WA) → antrean verifikasi",
+ "nodes": [
+  {
+   "parameters": {
+    "formTitle": "Unggah pengumuman PLN ULP Lambung Mangkurat",
+    "formDescription": "Unggah poster pengumuman pemadaman. Hasil bacaan AI masuk antrean dan baru tayang setelah diverifikasi.",
+    "formFields": {
+     "values": [
+      {
+       "fieldLabel": "Poster",
+       "fieldType": "file",
+       "multipleFiles": false,
+       "acceptFileTypes": ".jpg,.jpeg,.png,.webp",
+       "requiredField": true
+      },
+      {
+       "fieldLabel": "Tautan sumber (Instagram/WA)"
+      }
+     ]
+    },
+    "options": {},
+    "authentication": "basicAuth"
+   },
+   "name": "Form unggah poster",
+   "type": "n8n-nodes-base.formTrigger",
+   "typeVersion": 2.2,
+   "position": [
+    0,
+    0
+   ],
+   "notes": "Aktifkan Basic Auth pada form (Authentication: Basic Auth) atau bagikan URL form hanya ke relawan."
+  },
+  {
+   "parameters": {
+    "httpMethod": "POST",
+    "path": "pantau-pln-poster",
+    "options": {
+     "binaryPropertyName": "poster"
+    },
+    "authentication": "headerAuth"
+   },
+   "name": "Webhook dari gateway WA",
+   "type": "n8n-nodes-base.webhook",
+   "typeVersion": 2,
+   "position": [
+    0,
+    220
+   ],
+   "notes": "Wajib kredensial Header Auth (mis. X-Pantau-Kunci: <rahasia acak>) agar orang lain tidak bisa mengisi antrean."
+  },
+  {
+   "parameters": {
+    "mode": "manual",
+    "includeOtherFields": true,
+    "assignments": {
+     "assignments": [
+      {
+       "id": "a1",
+       "name": "sumber_url",
+       "type": "string",
+       "value": "={{ $json['Tautan sumber (Instagram/WA)'] || $json.body?.sumber_url || '' }}"
+      },
+      {
+       "id": "a2",
+       "name": "masuk_via",
+       "type": "string",
+       "value": "={{ $json.body ? 'wa' : 'form' }}"
+      }
+     ]
+    },
+    "options": {}
+   },
+   "name": "Gabung masukan",
+   "type": "n8n-nodes-base.set",
+   "typeVersion": 3.4,
+   "position": [
+    240,
+    100
+   ]
+  },
+  {
+   "parameters": {
+    "url": "={{ $env.PANTAU_SITE_URL }}/data/kelompok.json",
+    "options": {}
+   },
+   "name": "Ambil kelompok.json",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    480,
+    100
+   ],
+   "executeOnce": true
+  },
+  {
+   "parameters": {
+    "jsCode": "\n// Siapkan permintaan ke model AI vision (format OpenAI-compatible: OpenAI, OpenRouter, Groq, dll.)\nconst kelompok = $('Ambil kelompok.json').first().json;\nconst daftar = (Array.isArray(kelompok) ? kelompok : kelompok.data || []).map(k => `${k.kode}: ${k.teks}`).join('\\n');\nconst src = $('Gabung masukan').first();\nconst key = Object.keys(src.binary || {})[0];\nif (!key) throw new Error('Tidak ada gambar poster pada masukan.');\nconst buf = await this.helpers.getBinaryDataBuffer(0, key);\nconst mime = src.binary[key].mimeType || 'image/jpeg';\nconst sistem = `Anda membaca poster/pesan PENGUMUMAN pemadaman PLN UP3 Banjarmasin. Jawab HANYA JSON:\n{\"entri\":[{\"ulp\":\"Lambung Mangkurat|Ahmad Yani|<lainnya>\",\"jenis\":\"terjadwal|darurat|gangguan\",\"tanggal\":\"YYYY-MM-DD\",\"mulai\":\"HH:MM\",\"selesai\":\"HH:MM\",\"blok\":[{\"teks\":\"<salin persis teks kotak wilayah>\",\"kode\":\"<kode kelompok yang teksnya sama/hampir sama, atau BARU>\"}],\"alasan\":\"<kalimat sebab, diringkas>\"}],\"catatan\":\"<keraguan pembacaan, jika ada>\"}\nSatu poster bisa memuat beberapa kotak wilayah. Jangan menebak: tulis \"?\" bila tidak terbaca.\nDaftar kelompok yang sudah dikenal:\n${daftar}`;\nreturn [{ json: { body: {\n  model: $env.PANTAU_AI_MODEL || 'gpt-4o-mini',\n  temperature: 0,\n  response_format: { type: 'json_object' },\n  messages: [\n    { role: 'system', content: sistem },\n    { role: 'user', content: [ { type: 'text', text: 'Ekstrak jadwal dari poster ini.' },\n      { type: 'image_url', image_url: { url: `data:${mime};base64,${buf.toString('base64')}` } } ] }\n  ] }, sumber_url: src.json.sumber_url || '', masuk_via: src.json.masuk_via || '' } }];\n"
+   },
+   "name": "Siapkan permintaan AI",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    720,
+    100
+   ]
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "={{ $env.PANTAU_AI_URL || 'https://api.openai.com/v1/chat/completions' }}",
+    "authentication": "genericCredentialType",
+    "genericAuthType": "httpHeaderAuth",
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={{ JSON.stringify($json.body) }}",
+    "options": {
+     "timeout": 120000
+    }
+   },
+   "name": "Baca poster (AI vision)",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    960,
+    100
+   ]
+  },
+  {
+   "parameters": {
+    "jsCode": "\n// Ubah jawaban AI menjadi baris antrean (status: menunggu verifikasi manusia)\nconst res = $input.first().json;\nconst teks = res.choices?.[0]?.message?.content || '{}';\nlet out; try { out = JSON.parse(teks); } catch (e) { throw new Error('Jawaban AI bukan JSON: ' + teks.slice(0, 300)); }\nconst meta = $('Siapkan permintaan AI').first().json;\nreturn (out.entri || []).map((e, i) => {\n  const kode = (e.blok || []).map(b => b.kode || 'BARU');\n  return { json: {\n    ulp: e.ulp || '', jenis: e.jenis || 'terjadwal',\n    id: `${e.tanggal}-${(e.mulai || '').replace(':', '')}${(out.entri.length > 1) ? '-' + (i + 1) : ''}`,\n    tanggal: e.tanggal, mulai: e.mulai, selesai: e.selesai,\n    kelompok: kode.join(','),\n    teks_wilayah: (e.blok || []).map(b => b.teks).join(' || '),\n    alasan: e.alasan || '', poster: '', sumber_url: meta.sumber_url,\n    status: 'menunggu', catatan_verifikator: out.catatan || '', masuk_via: meta.masuk_via } };\n});\n"
+   },
+   "name": "Jadikan baris antrean",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    1200,
+    100
+   ]
+  },
+  {
+   "parameters": {
+    "documentId": {
+     "__rl": true,
+     "mode": "url",
+     "value": "={{ $env.PANTAU_SHEET_URL }}"
+    },
+    "sheetName": {
+     "__rl": true,
+     "mode": "name",
+     "value": "antrean"
+    },
+    "options": {}
+   },
+   "name": "Baca antrean (cek duplikat)",
+   "type": "n8n-nodes-base.googleSheets",
+   "typeVersion": 4.5,
+   "position": [
+    1440,
+    100
+   ],
+   "alwaysOutputData": true,
+   "executeOnce": true
+  },
+  {
+   "parameters": {
+    "jsCode": "\n// Kunci unik lintas sumber: ULP + tanggal + jam + kelompok (atau teks wilayah yang dinormalkan).\nconst norm = s => String(s || '').toLowerCase().replace(/\\b(jl|jalan|gg|gang|komp|komplek|kp|dan|sekitarnya|sebagian)\\b\\.?/g, ' ').replace(/[^a-z0-9]+/g, ' ').trim();\nconst kunciDari = r => [String(r.ulp || '').toLowerCase().replace(/\\s+/g, ''), r.tanggal, String(r.mulai).slice(0, 5), String(r.selesai).slice(0, 5),\n  (r.kelompok && !/BARU|\\?/.test(r.kelompok)) ? String(r.kelompok).split(',').map(s => s.trim()).sort().join('+') : norm(r.teks_wilayah).split(' ').sort().slice(0, 12).join('+')].join('|');\n\nconst ada = new Set(), sumber = new Set();\nfor (const r of $('Baca antrean (cek duplikat)').all()) { const j = r.json; if (j.kunci) ada.add(j.kunci); else if (j.tanggal) ada.add(kunciDari(j)); if (j.sumber_url) sumber.add(j.sumber_url); }\nconst keluar = [];\nfor (const it of $('Jadikan baris antrean').all()) {\n  const r = it.json; r.kunci = kunciDari(r);\n  if (ada.has(r.kunci)) continue;            // jadwal sama sudah ada (dari sumber mana pun)\n  ada.add(r.kunci); keluar.push({ json: r });\n}\nreturn keluar;\n"
+   },
+   "name": "Buang duplikat",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    1680,
+    100
+   ]
+  },
+  {
+   "parameters": {
+    "operation": "append",
+    "documentId": {
+     "__rl": true,
+     "mode": "url",
+     "value": "={{ $env.PANTAU_SHEET_URL }}"
+    },
+    "sheetName": {
+     "__rl": true,
+     "mode": "name",
+     "value": "antrean"
+    },
+    "columns": {
+     "mappingMode": "autoMapInputData",
+     "value": {}
+    },
+    "options": {}
+   },
+   "name": "Tambah ke Google Sheet (antrean)",
+   "type": "n8n-nodes-base.googleSheets",
+   "typeVersion": 4.5,
+   "position": [
+    1920,
+    100
+   ]
+  }
+ ],
+ "connections": {
+  "Form unggah poster": {
+   "main": [
+    [
+     {
+      "node": "Gabung masukan",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Webhook dari gateway WA": {
+   "main": [
+    [
+     {
+      "node": "Gabung masukan",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Gabung masukan": {
+   "main": [
+    [
+     {
+      "node": "Ambil kelompok.json",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Ambil kelompok.json": {
+   "main": [
+    [
+     {
+      "node": "Siapkan permintaan AI",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Siapkan permintaan AI": {
+   "main": [
+    [
+     {
+      "node": "Baca poster (AI vision)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Baca poster (AI vision)": {
+   "main": [
+    [
+     {
+      "node": "Jadikan baris antrean",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Jadikan baris antrean": {
+   "main": [
+    [
+     {
+      "node": "Baca antrean (cek duplikat)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Baca antrean (cek duplikat)": {
+   "main": [
+    [
+     {
+      "node": "Buang duplikat",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Buang duplikat": {
+   "main": [
+    [
+     {
+      "node": "Tambah ke Google Sheet (antrean)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ },
+ "settings": {
+  "executionOrder": "v1"
+ }
+}

@@ -1,0 +1,400 @@
+{
+ "name": "Pantau PLN – Jadwal dari berita hari ini → antrean verifikasi",
+ "nodes": [
+  {
+   "parameters": {
+    "rule": {
+     "interval": [
+      {
+       "field": "cronExpression",
+       "expression": "0 */30 6-22 * * *"
+      }
+     ]
+    }
+   },
+   "name": "Tiap 30 menit (06–22 WITA)",
+   "type": "n8n-nodes-base.scheduleTrigger",
+   "typeVersion": 1.2,
+   "position": [
+    0,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "url": "https://news.google.com/rss/search?q=jadwal+pemadaman+listrik+Banjarmasin+when:1d&hl=id&gl=ID&ceid=ID:id",
+    "options": {
+     "response": {
+      "response": {
+       "responseFormat": "text"
+      }
+     }
+    }
+   },
+   "name": "Ambil RSS Google News",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    220,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "jsCode": "\n// Ambil item RSS hari ini yang judulnya berisi jadwal pemadaman.\nconst xml = $input.first().json.data || '';\nconst hariIni = new Date(Date.now() + 8 * 36e5).toISOString().slice(0, 10); // WITA\nconst items = [...xml.matchAll(/<item>([\\s\\S]*?)<\\/item>/g)].map(m => {\n  const t = k => ((m[1].match(new RegExp(`<${k}[^>]*>([\\\\s\\\\S]*?)<\\\\/${k}>`)) || [])[1] || '').replace(/<!\\[CDATA\\[|\\]\\]>/g, '').trim();\n  return { judul: t('title'), url: t('link'), terbit: new Date(t('pubDate')) };\n}).filter(i => /^https?:\\/\\//.test(i.url) && /jadwal|pemadaman|padam/i.test(i.judul) && /banjarmasin|kalsel|banjar|batola/i.test(i.judul)\n  && new Date(i.terbit.getTime() + 8 * 36e5).toISOString().slice(0, 10) === hariIni);\nreturn items.slice(0, 6).map(i => ({ json: { ...i, terbit: i.terbit.toISOString() } }));\n"
+   },
+   "name": "Saring berita hari ini",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    440,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "documentId": {
+     "__rl": true,
+     "mode": "url",
+     "value": "={{ $env.PANTAU_SHEET_URL }}"
+    },
+    "sheetName": {
+     "__rl": true,
+     "mode": "name",
+     "value": "antrean"
+    },
+    "options": {}
+   },
+   "name": "Baca antrean (artikel lama)",
+   "type": "n8n-nodes-base.googleSheets",
+   "typeVersion": 4.5,
+   "position": [
+    660,
+    0
+   ],
+   "alwaysOutputData": true,
+   "executeOnce": true
+  },
+  {
+   "parameters": {
+    "jsCode": "\n// Lewati artikel yang sudah pernah diproses (sumber_url sudah ada di antrean).\nconst sudah = new Set($('Baca antrean (artikel lama)').all().map(r => r.json.sumber_url).filter(Boolean));\nreturn $('Saring berita hari ini').all().filter(i => !sudah.has(i.json.url));\n"
+   },
+   "name": "Lewati artikel lama",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    880,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "url": "={{ $json.url }}",
+    "options": {
+     "redirect": {
+      "redirect": {
+       "followRedirects": true,
+       "maxRedirects": 5
+      }
+     },
+     "response": {
+      "response": {
+       "responseFormat": "text"
+      }
+     },
+     "timeout": 30000
+    }
+   },
+   "name": "Unduh artikel",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    1100,
+    0
+   ],
+   "onError": "continueRegularOutput"
+  },
+  {
+   "parameters": {
+    "jsCode": "\n// Bersihkan HTML artikel menjadi teks polos (maks 12.000 karakter) untuk dibaca AI.\nreturn $input.all().map((it, i) => {\n  const html = String(it.json.data || '');\n  const teks = html.replace(/<script[\\s\\S]*?<\\/script>|<style[\\s\\S]*?<\\/style>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\\s+/g, ' ').slice(0, 12000);\n  const asal = $('Saring berita hari ini').all()[i]?.json || {};\n  return { json: { teks, sumber_url: asal.url, judul: asal.judul } };\n}).filter(x => x.json.teks.length > 400);\n"
+   },
+   "name": "Jadikan teks",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    1320,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "url": "={{ $env.PANTAU_SITE_URL }}/data/kelompok.json",
+    "options": {}
+   },
+   "name": "Ambil kelompok.json",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    1540,
+    0
+   ],
+   "executeOnce": true
+  },
+  {
+   "parameters": {
+    "jsCode": "\nconst kelompok = $('Ambil kelompok.json').first().json;\nconst daftar = (Array.isArray(kelompok) ? kelompok : kelompok.data || []).map(k => `${k.kode} (ULP ${k.ulp || 'Lambung Mangkurat'}): ${k.teks}`).join('\\n');\nreturn $('Jadikan teks').all().map(it => ({ json: { sumber_url: it.json.sumber_url, masuk_via: 'berita', body: {\n  model: $env.PANTAU_AI_MODEL || 'gpt-4o-mini', temperature: 0, response_format: { type: 'json_object' },\n  messages: [\n    { role: 'system', content: `Ekstrak jadwal pemadaman PLN UP3 Banjarmasin (hanya ULP Lambung Mangkurat dan ULP Ahmad Yani) dari artikel berita. Jawab HANYA JSON:\n{\"entri\":[{\"ulp\":\"Lambung Mangkurat|Ahmad Yani\",\"jenis\":\"terjadwal|darurat\",\"tanggal\":\"YYYY-MM-DD\",\"mulai\":\"HH:MM\",\"selesai\":\"HH:MM\",\"blok\":[{\"teks\":\"<salin daftar wilayah>\",\"kode\":\"<kode kelompok yang cocok atau BARU>\"}],\"alasan\":\"<ringkas>\"}],\"catatan\":\"<keraguan>\"}\nAbaikan ULP lain (Banjarbaru, Martapura, dst). Jangan menebak; kosongkan entri bila artikel tidak memuat jadwal ULP tersebut.\nKelompok yang dikenal:\n${daftar}` },\n    { role: 'user', content: it.json.teks } ] } } }));\n"
+   },
+   "name": "Siapkan permintaan AI",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    1760,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "={{ $env.PANTAU_AI_URL || 'https://api.openai.com/v1/chat/completions' }}",
+    "authentication": "genericCredentialType",
+    "genericAuthType": "httpHeaderAuth",
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={{ JSON.stringify($json.body) }}",
+    "options": {
+     "timeout": 120000
+    }
+   },
+   "name": "Baca jadwal (AI teks)",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    1980,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "jsCode": "\nconst out = [];\n$input.all().forEach((res, i) => {\n  const meta = $('Siapkan permintaan AI').all()[i]?.json || {};\n  let o; try { o = JSON.parse(res.json.choices?.[0]?.message?.content || '{}'); } catch { return; }\n  (o.entri || []).forEach(e => out.push({ json: {\n    id: `${e.ulp === 'Ahmad Yani' ? 'ay-' : ''}${e.tanggal}-${String(e.mulai).replace(':', '')}`, ulp: e.ulp, jenis: e.jenis || 'terjadwal',\n    tanggal: e.tanggal, mulai: e.mulai, selesai: e.selesai, kelompok: (e.blok || []).map(b => b.kode || 'BARU').join(','),\n    teks_wilayah: (e.blok || []).map(b => b.teks).join(' || '), alasan: e.alasan || '', poster: '', sumber_url: meta.sumber_url,\n    status: 'menunggu', catatan_verifikator: 'dari berita (sumber sekunder) — cocokkan dengan pengumuman resmi PLN. ' + (o.catatan || ''), masuk_via: 'berita' } }));\n});\nreturn out;\n"
+   },
+   "name": "Jadikan baris antrean",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    2200,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "documentId": {
+     "__rl": true,
+     "mode": "url",
+     "value": "={{ $env.PANTAU_SHEET_URL }}"
+    },
+    "sheetName": {
+     "__rl": true,
+     "mode": "name",
+     "value": "antrean"
+    },
+    "options": {}
+   },
+   "name": "Baca antrean (cek duplikat)",
+   "type": "n8n-nodes-base.googleSheets",
+   "typeVersion": 4.5,
+   "position": [
+    2420,
+    0
+   ],
+   "alwaysOutputData": true,
+   "executeOnce": true
+  },
+  {
+   "parameters": {
+    "jsCode": "\n// Kunci unik lintas sumber: ULP + tanggal + jam + kelompok (atau teks wilayah yang dinormalkan).\nconst norm = s => String(s || '').toLowerCase().replace(/\\b(jl|jalan|gg|gang|komp|komplek|kp|dan|sekitarnya|sebagian)\\b\\.?/g, ' ').replace(/[^a-z0-9]+/g, ' ').trim();\nconst kunciDari = r => [String(r.ulp || '').toLowerCase().replace(/\\s+/g, ''), r.tanggal, String(r.mulai).slice(0, 5), String(r.selesai).slice(0, 5),\n  (r.kelompok && !/BARU|\\?/.test(r.kelompok)) ? String(r.kelompok).split(',').map(s => s.trim()).sort().join('+') : norm(r.teks_wilayah).split(' ').sort().slice(0, 12).join('+')].join('|');\n\nconst ada = new Set(), sumber = new Set();\nfor (const r of $('Baca antrean (cek duplikat)').all()) { const j = r.json; if (j.kunci) ada.add(j.kunci); else if (j.tanggal) ada.add(kunciDari(j)); if (j.sumber_url) sumber.add(j.sumber_url); }\nconst keluar = [];\nfor (const it of $('Jadikan baris antrean').all()) {\n  const r = it.json; r.kunci = kunciDari(r);\n  if (ada.has(r.kunci)) continue;            // jadwal sama sudah ada (dari sumber mana pun)\n  ada.add(r.kunci); keluar.push({ json: r });\n}\nreturn keluar;\n"
+   },
+   "name": "Buang duplikat",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    2640,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "operation": "append",
+    "documentId": {
+     "__rl": true,
+     "mode": "url",
+     "value": "={{ $env.PANTAU_SHEET_URL }}"
+    },
+    "sheetName": {
+     "__rl": true,
+     "mode": "name",
+     "value": "antrean"
+    },
+    "columns": {
+     "mappingMode": "autoMapInputData",
+     "value": {}
+    },
+    "options": {}
+   },
+   "name": "Tambah ke Google Sheet (antrean)",
+   "type": "n8n-nodes-base.googleSheets",
+   "typeVersion": 4.5,
+   "position": [
+    2860,
+    0
+   ]
+  }
+ ],
+ "connections": {
+  "Tiap 30 menit (06–22 WITA)": {
+   "main": [
+    [
+     {
+      "node": "Ambil RSS Google News",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Ambil RSS Google News": {
+   "main": [
+    [
+     {
+      "node": "Saring berita hari ini",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Saring berita hari ini": {
+   "main": [
+    [
+     {
+      "node": "Baca antrean (artikel lama)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Baca antrean (artikel lama)": {
+   "main": [
+    [
+     {
+      "node": "Lewati artikel lama",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Lewati artikel lama": {
+   "main": [
+    [
+     {
+      "node": "Unduh artikel",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Unduh artikel": {
+   "main": [
+    [
+     {
+      "node": "Jadikan teks",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Jadikan teks": {
+   "main": [
+    [
+     {
+      "node": "Ambil kelompok.json",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Ambil kelompok.json": {
+   "main": [
+    [
+     {
+      "node": "Siapkan permintaan AI",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Siapkan permintaan AI": {
+   "main": [
+    [
+     {
+      "node": "Baca jadwal (AI teks)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Baca jadwal (AI teks)": {
+   "main": [
+    [
+     {
+      "node": "Jadikan baris antrean",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Jadikan baris antrean": {
+   "main": [
+    [
+     {
+      "node": "Baca antrean (cek duplikat)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Baca antrean (cek duplikat)": {
+   "main": [
+    [
+     {
+      "node": "Buang duplikat",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Buang duplikat": {
+   "main": [
+    [
+     {
+      "node": "Tambah ke Google Sheet (antrean)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ },
+ "settings": {
+  "executionOrder": "v1"
+ }
+}

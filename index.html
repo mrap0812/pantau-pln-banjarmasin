@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://cdnjs.cloudflare.com https://*.tile.openstreetmap.org https://server.arcgisonline.com; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Pantau PLN Banjarmasin</title>
+<meta property="og:title" content="Pantau PLN Banjarmasin">
+<meta property="og:description" content="Jadwal, peta, dan statistik pemadaman bergilir PLN di Banjarmasin, dari pengumuman resmi.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="id_ID">
+<meta name="theme-color" content="#e4002b">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/ikon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/ikon-192.png">
+<meta name="description" content="Pantauan warga atas jadwal pemadaman bergilir PLN di Banjarmasin (ULP Lambung Mangkurat dan ULP Ahmad Yani): peta, statistik, pola siang-malam, dan template laporan SP4N-LAPOR.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<noscript><p>Situs ini butuh JavaScript untuk menampilkan jadwal, peta, dan statistik. Data mentahnya tetap bisa dibuka di <a href="data/jadwal.json">data/jadwal.json</a>.</p></noscript>
+<a class="lewati" href="#cek">Langsung ke cek wilayah</a>
+<header class="top">
+  <a class="brand" href="#">Pantau PLN <span>Banjarmasin</span></a>
+  <nav class="scroll">
+    <a href="#cek">Cek wilayah</a><a href="#peta">Peta</a><a href="#statistik">Statistik</a><a href="#gim">Gim</a><a href="#berita">Berita</a><a href="#publikasi">Pengumuman</a><a href="#lapor">Lapor</a><a href="#metode">Metode</a>
+  </nav>
+</header>
+
+<main>
+<section class="band hero">
+  <p class="kicker">Pantauan warga · bukan situs resmi PLN</p>
+  <div class="filter">
+    <label>Wilayah kerja<select id="f-ulp"></select></label>
+    <label>Periode<select id="f-periode"><option value="bersama">Periode yang sama untuk semua ULP</option><option value="semua">Seluruh data</option></select></label>
+  </div>
+  <h1 id="judul-temuan">Memuat data pemadaman…</h1>
+  <p class="lede" id="lede"></p>
+  <div class="kpi" id="kpi"></div>
+  <div class="wilayah-saya" id="wilayah-saya"></div>
+  <p class="muted" id="catatan-periode"></p>
+  <div class="today" id="hari-ini"></div>
+  <details class="panduan"><summary>Cara membaca angka di situs ini</summary>
+    <ul>
+      <li><b>Kelompok wilayah</b>: daftar jalan/komplek yang selalu diumumkan bersama oleh PLN, kemungkinan satu jalur kabel (penyulang). Kode A–M = ULP Lambung Mangkurat, Y1–Y9 = ULP Ahmad Yani.</li>
+      <li><b>Jam padam</b>: lamanya padam menurut perkiraan waktu di pengumuman, bukan hasil pengukuran.</li>
+      <li><b>Malam hari</b>: pukul 18.00–24.00, saat keluarga di rumah dan PLN sendiri meminta warga berhemat.</li>
+      <li><b>Indeks ketimpangan</b>: 0 berarti jam padam terbagi rata ke semua wilayah; makin mendekati 1, makin menumpuk di sedikit wilayah.</li>
+      <li><b>Padam darurat</b>: padam mendadak karena kerusakan peralatan, diumumkan lewat saluran WhatsApp resmi PLN.</li>
+    </ul></details>
+</section>
+
+<section class="band" id="cek">
+  <h2>Cek wilayah saya</h2>
+  <p class="muted">Ketik nama jalan, komplek, atau kelurahan seperti tertulis di pengumuman PLN.</p>
+  <div class="cari">
+    <label for="q" class="sr">Cari wilayah</label>
+    <input id="q" type="search" placeholder="contoh: Pondok Metro, Sultan Adam, Alalak" autocomplete="off" enterkeyhint="search">
+  </div>
+  <div class="lokasi"><button type="button" id="pakai-lokasi" class="ghost">Pakai lokasi saya</button><span class="muted" id="lokasi-info" role="status">Lokasi hanya dipakai di perangkat Anda untuk mencari kelurahan, tidak dikirim ke mana pun.</span></div>
+  <div id="hasil-cari" class="hasil"></div>
+</section>
+
+<section class="band dark" id="peta">
+  <div class="peta-head">
+    <div>
+      <h2>Peta beban pemadaman</h2>
+      <p class="muted">Warna kelurahan = beban tertinggi di antara kelompok yang melayaninya. Garis = ruas jalan yang disebut di pengumuman.</p>
+    </div>
+    <div class="seg" role="group" aria-label="Ukuran">
+      <button data-m="malam" class="on">Jam malam</button><button data-m="total">Total jam</button><button data-m="n">Frekuensi</button>
+    </div>
+  </div>
+  <div id="map" role="region" aria-label="Peta pemadaman"></div>
+  <div class="legend" id="legend"></div>
+</section>
+
+<section class="band" id="statistik">
+  <h2>Siapa menanggung jam malam?</h2>
+  <p class="muted">Total jam padam per kelompok wilayah, dipisah siang (sebelum 18.00) dan malam (18.00–24.00). PLN sendiri menyebut 18.00–21.00 sebagai jam beban puncak.</p>
+  <div class="kpi kecil" id="ketimpangan"></div>
+  <div id="bars" class="bars"></div>
+  <h3>Tren harian</h3>
+  <p class="muted">Jam padam per hari, dijumlah atas seluruh kelompok wilayah (jam × kelompok). Hari tanpa batang berarti tidak ada pengumuman yang terkumpul, belum tentu tidak padam.</p>
+  <div class="fig" id="trenfig"><svg id="tren"></svg></div>
+  <div class="legend gelap" id="tren-leg"></div>
+  <h3>Kalender pemadaman</h3>
+  <p class="muted">Setiap sel = jam padam kelompok pada tanggal itu; merah = ada jam malam; * = padam darurat.</p>
+  <div class="scroll"><table id="kalender" class="kal"></table></div>
+  <h3>Jam berapa listrik dipadamkan?</h3>
+  <p class="muted">Jumlah jam-kelompok padam per jam dalam sehari. Merah = 18.00 ke atas.</p>
+  <div class="fig" id="jamfig"><svg id="jam"></svg></div>
+</section>
+
+
+<section class="band dark" id="gim">
+  <h2>Gim satir: Pulang Kerja, Kipas Mati</h2>
+  <p class="muted">Arcade satir. Setiap level adalah satu jadwal padam asli wilayah Anda, berurutan, dan makin sulit. Bertahan sampai listrik menyala, lalu lanjut ke malam berikutnya.</p>
+  <div class="gim-atur">
+    <label>Wilayah saya<select id="g-kel"></select></label>
+    <button id="g-mulai" type="button">Mulai</button>
+  </div>
+  <div class="arena"><canvas id="g-kanvas" tabindex="0" aria-label="Arena gim: keluarga di ruang gelap, nyamuk, dan lilin"></canvas>
+    <p class="g-kontrol"><b>Kontrol:</b> panah/WASD bergerak · tahan Spasi untuk mengipas dan menepuk nyamuk · P jeda. Di HP: sentuh untuk berjalan, tahan untuk mengipas. Ambil <b>L</b> lilin, <b>E</b> es batu, <b>P</b> powerbank. Kalah bila satu anggota keluarga mencapai gerah 100.</p>
+    <p class="g-rekor" id="g-rekor"></p></div>
+  <div id="g-hasil" class="g-hasil" hidden></div>
+  <div id="lencana" class="lencana"></div>
+</section>
+
+<section class="band" id="berita">
+  <h2>Berita PLN Banjarmasin</h2>
+  <p class="muted" id="berita-info">Memuat…</p>
+  <div class="cari"><label for="qb" class="sr">Saring berita</label><input id="qb" type="search" placeholder="saring: padam, Ombudsman, Asam-Asam…"></div>
+  <ol id="daftar-berita" class="berita"></ol>
+  <p><button id="berita-lagi" type="button" class="ghost" hidden>Tampilkan lebih banyak</button></p>
+</section>
+
+<section class="band" id="publikasi">
+  <h2>Arsip pengumuman PLN</h2>
+  <div id="gangguan" class="gangguan"></div>
+  <p class="muted" id="sumber-link"></p>
+  <div id="poster" class="poster"></div>
+</section>
+
+<section class="band dark" id="lapor">
+  <h2>Template laporan SP4N-LAPOR</h2>
+  <p class="muted">Isi data Anda; fakta wilayah dihitung otomatis dari pengumuman PLN. Periksa ulang sebelum mengirim. Data yang Anda ketik hanya tersimpan di perangkat ini (tidak dikirim ke server mana pun) dan bisa dihapus dengan tombol “Hapus data saya”.</p>
+  <ol class="langkah"><li>Isi formulir dan pilih wilayah.</li><li>Tekan <b>Salin laporan</b>.</li><li>Buka lapor.go.id, masuk/daftar, tempel di kolom isi laporan, lampirkan grafik atau poster dari situs ini.</li><li>Simpan nomor tiket laporan untuk memantau tanggapan.</li></ol>
+  <form id="form-lapor" class="form">
+    <label>Nama<input id="f-nama" required autocomplete="name"></label>
+    <label>ID pelanggan<input id="f-id" inputmode="numeric" pattern="[0-9]{11,12}" maxlength="12" autocomplete="off" placeholder="11–12 digit, ada di struk token"></label>
+    <label>Jenis pelanggan
+      <select id="f-jenis"><option>prabayar</option><option>pascabayar</option></select></label>
+    <label>Alamat<input id="f-alamat" placeholder="Jl. …, Komp. …"></label>
+    <label>Kelompok wilayah<select id="f-kel"></select></label>
+    <label>Kontak (HP/email)<input id="f-kontak" autocomplete="tel" placeholder="untuk dihubungi petugas"></label>
+  </form>
+  <div class="aksi">
+    <button id="salin" type="button">Salin laporan</button>
+    <button id="unduh" type="button" class="ghost">Unduh .txt</button>
+    <button id="cetak" type="button" class="ghost">Cetak / simpan PDF</button>
+    <button id="hapus-data" type="button" class="ghost">Hapus data saya</button>
+    <a id="ke-lapor" class="ghost btn" href="https://www.lapor.go.id/">Buka lapor.go.id</a>
+    <span id="status-salin" role="status"></span>
+  </div>
+  <pre id="teks-lapor" class="laporan"></pre>
+</section>
+
+<section class="band" id="metode">
+  <h2>Metode dan batasan</h2>
+  <ul class="metode">
+    <li><b>Sumber:</b> hanya pengumuman resmi PLN ULP Lambung Mangkurat dan ULP Ahmad Yani (UP3 Banjarmasin). Tiap entri diverifikasi manusia sebelum tayang; poster aslinya ditampilkan di bagian pengumuman.</li>
+    <li><b>Jam</b> adalah estimasi waktu dalam pengumuman, bukan durasi padam aktual. Pengumuman yang terbit ganda dicatat sekali.</li>
+    <li><b>Kelompok wilayah</b> = blok daftar wilayah yang selalu muncul bersama di pengumuman (kemungkinan satu penyulang). Nama kelompok dibuat pengelola situs.</li>
+    <li><b>Perbandingan antar-ULP</b> memakai periode yang sama (data ULP Ahmad Yani yang terkumpul baru mulai 17 Nov 2026). Kode kelompok A–M = ULP Lambung Mangkurat, Y1–Y8 = ULP Ahmad Yani.</li>
+    <li><b>Peta</b>: batas kelurahan/desa BIG 2026 (Kota Banjarmasin dan kecamatan sekitar di Kab. Banjar); ruas jalan OpenStreetMap yang namanya cocok dengan pengumuman. Pemetaan jalan → kelurahan adalah perkiraan, bukan peta jaringan PLN. Banyak gang/komplek belum ada di OpenStreetMap.</li>
+    <li><b>Cakupan</b>: hanya ULP yang pengumumannya sudah dikumpulkan. Wilayah yang dilayani ULP lain tidak tercakup, jadi absen di sini ≠ tidak pernah padam.</li>
+    <li><b>Gim</b> bernada satir dan merupakan simulasi berdasarkan jadwal asli, bukan klaim tentang kejadian di rumah tertentu. Bagian lain situs ini disajikan apa adanya.</li>
+    <li><b>Indeks ketimpangan (Gini)</b>: 0 = jam padam terbagi rata ke semua kelompok, 1 = seluruh beban jatuh ke satu kelompok. Dihitung per ULP dari total jam padam tiap kelompok pada periode terpilih.</li>
+    <li><b>Berita</b>: diambil otomatis tiap 30 menit dari Google News, ANTARA Kalsel, dan RRI Banjarmasin (RSS), disaring kata kunci PLN/listrik + Kalsel. Judul dan tautan milik media masing-masing; situs ini tidak menyalin isi berita.</li>
+    <li><b>Data terbuka</b>: <a href="data/jadwal.json">jadwal.json</a> · <a href="data/kelompok.json">kelompok.json</a> · <a href="data/berita.json">berita.json</a> · <button id="csv" class="linkish" type="button">unduh CSV</button></li>
+  </ul>
+  <p class="muted" id="diperbarui"></p>
+</section>
+</main>
+
+<div id="lightbox" hidden><button aria-label="Tutup">×</button><img alt=""></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+<script src="assets/gim.js" defer></script>
+<script src="assets/app.js" defer></script>
+</body>
+</html>

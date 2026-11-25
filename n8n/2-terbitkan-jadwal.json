@@ -1,0 +1,114 @@
+{
+ "name": "Pantau PLN – Terbitkan jadwal terverifikasi ke situs",
+ "nodes": [
+  {
+   "parameters": {
+    "rule": {
+     "interval": [
+      {
+       "field": "minutes",
+       "minutesInterval": 15
+      }
+     ]
+    }
+   },
+   "name": "Tiap 15 menit",
+   "type": "n8n-nodes-base.scheduleTrigger",
+   "typeVersion": 1.2,
+   "position": [
+    0,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "documentId": {
+     "__rl": true,
+     "mode": "url",
+     "value": "={{ $env.PANTAU_SHEET_URL }}"
+    },
+    "sheetName": {
+     "__rl": true,
+     "mode": "name",
+     "value": "antrean"
+    },
+    "options": {}
+   },
+   "name": "Baca Google Sheet (antrean)",
+   "type": "n8n-nodes-base.googleSheets",
+   "typeVersion": 4.5,
+   "position": [
+    240,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "jsCode": "\n// Bangun data/jadwal.json dari baris berstatus \"terverifikasi\"\nconst rows = $input.all().map(r => r.json).filter(r => String(r.status).trim() === 'terverifikasi');\nconst seen = new Set();\nconst jadwal = rows.filter(r => r.tanggal && r.mulai && r.selesai && r.kelompok && !seen.has(r.kunci || r.id) && seen.add(r.kunci || r.id))\n  .map(r => ({ id: String(r.id), ulp: r.ulp || 'Lambung Mangkurat', jenis: r.jenis || 'terjadwal', tanggal: String(r.tanggal), mulai: String(r.mulai).slice(0, 5), selesai: String(r.selesai).slice(0, 5),\n    kelompok: String(r.kelompok).split(',').map(s => s.trim()).filter(Boolean),\n    alasan: r.alasan || '', status: 'terverifikasi', poster: r.poster || undefined, sumber_url: r.sumber_url || undefined,\n    sumber: 'Pengumuman resmi PLN ULP Lambung Mangkurat' }))\n  .sort((a, b) => (a.tanggal + a.mulai).localeCompare(b.tanggal + b.mulai));\nconst doc = { diperbarui: new Date().toISOString(), unit: 'PLN UP3 Banjarmasin: ULP Lambung Mangkurat dan ULP Ahmad Yani',\n  catatan: 'Setiap entri bersumber dari satu pengumuman resmi PLN dan diverifikasi manusia. Jam = estimasi waktu pada pengumuman.', jadwal };\nreturn [{ json: { isi: JSON.stringify(doc, null, 1), jumlah: jadwal.length } }];\n"
+   },
+   "name": "Bangun jadwal.json",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    480,
+    0
+   ]
+  },
+  {
+   "parameters": {
+    "resource": "file",
+    "operation": "edit",
+    "owner": "={{ $env.PANTAU_GH_OWNER }}",
+    "repository": "={{ $env.PANTAU_GH_REPO }}",
+    "filePath": "data/jadwal.json",
+    "fileContent": "={{ $json.isi }}",
+    "commitMessage": "=data: perbarui jadwal ({{ $json.jumlah }} entri terverifikasi)"
+   },
+   "name": "Simpan ke GitHub",
+   "type": "n8n-nodes-base.github",
+   "typeVersion": 1,
+   "position": [
+    720,
+    0
+   ]
+  }
+ ],
+ "connections": {
+  "Tiap 15 menit": {
+   "main": [
+    [
+     {
+      "node": "Baca Google Sheet (antrean)",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Baca Google Sheet (antrean)": {
+   "main": [
+    [
+     {
+      "node": "Bangun jadwal.json",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Bangun jadwal.json": {
+   "main": [
+    [
+     {
+      "node": "Simpan ke GitHub",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ },
+ "settings": {
+  "executionOrder": "v1"
+ }
+}

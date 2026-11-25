@@ -1,0 +1,1 @@
+[out:json][timeout:180];way["highway"]["name"~"(Ahmad Yani|A\\. ?Yani|Kelayan A|Handil|Tatah|Kebun Limau|Limau Bali|Pondok Pinang|Dharma Praja|Karya Mufakat|Simpang Limau)",i](-3.43,114.58,-3.32,114.70);out geom;

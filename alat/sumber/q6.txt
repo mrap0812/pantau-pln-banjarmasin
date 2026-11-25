@@ -1,0 +1,1 @@
+[out:json][timeout:120];way["highway"~"^(trunk|primary|secondary)$"]["name"~"Yani",i](-3.40,114.59,-3.32,114.68);out geom;
