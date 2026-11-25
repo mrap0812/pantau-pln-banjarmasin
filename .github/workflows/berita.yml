@@ -1,22 +1,33 @@
-name: Ambil berita PLN Banjarmasin
+name: Perbarui berita dan jadwal
 on:
   schedule:
     - cron: "*/30 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
+concurrency:
+  group: perbarui-data
+  cancel-in-progress: false
 jobs:
-  berita:
+  perbarui:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python alat/ambil_berita.py
+      - name: Berita PLN Banjarmasin
+        run: python alat/ambil_berita.py
+      - name: Jadwal dari berita
+        run: python alat/jadwal_dari_berita.py
+      - name: Validasi
+        run: python alat/validasi.py
       - name: Simpan jika berubah
         run: |
           git config user.name "pantau-bot"
           git config user.email "pantau-bot@users.noreply.github.com"
-          git add data/berita.json
-          git diff --cached --quiet || (git commit -m "berita: perbarui otomatis" && git push)
+          git add data/
+          git diff --cached --quiet || (git commit -m "data: perbarui berita dan jadwal" && git push)
+      - name: Ringkasan
+        if: always()
+        run: python -c "import json;d=json.load(open('data/perlu_tinjau.json'));print('Blok perlu ditinjau:',len(d['blok']));[print('-',b['ulp'],b['tanggal'],b['mulai'],b['teks_tak_dikenal'][:150]) for b in d['blok']]" >> $GITHUB_STEP_SUMMARY || true

@@ -136,7 +136,7 @@ function kartu(kd, kel) {
   return `<article class="kartu"><h3>${esc(kd)} · ${esc(g.nama)}</h3><p class="teks">ULP ${esc(g.ulp || 'Lambung Mangkurat')}</p>
   <div class="angka"><span><b>${s.n}×</b> padam</span><span><b>${fmt(s.tot)}</b> jam</span><span><b style="color:var(--red)">${s.tot ? Math.round(s.mal / s.tot * 100) : 0}%</b> di malam hari</span></div>
   <p class="teks">${esc(g.teks)}${kel.length ? `<br>Kelurahan (perkiraan): ${esc(kel.join(', '))}` : ''}</p>
-  <ul class="daftar">${s.ev.map(e => `<li class="${e.mal ? 'm' : ''}">${esc(tgl(e.tanggal))} · ${esc(e.mulai)}–${esc(e.selesai)}${e.jenis === 'darurat' ? ' · padam darurat' : ''}</li>`).join('')}</ul>
+  <ul class="daftar">${s.ev.map(e => `<li class="${e.mal ? 'm' : ''}">${esc(tgl(e.tanggal))} · ${esc(e.mulai)}–${esc(e.selesai)}${e.jenis === 'darurat' ? ' · padam darurat' : ''}${!e.poster && e.sumber_url ? ` · <a href="${esc(amanUrl(e.sumber_url))}" rel="noopener noreferrer" target="_blank">sumber berita</a>` : ''}</li>`).join('')}</ul>
   <p><a class="btn ghost" href="#lapor" data-pilih="${esc(kd)}">Buat laporan untuk wilayah ini</a><button type="button" class="ghost bagikan" data-simpan="${esc(kd)}">${store.get('kel') === kd ? 'Wilayah saya ✓' : 'Jadikan wilayah saya'}</button><button type="button" class="ghost bagikan" data-bagi="${esc(kd)}">Salin tautan</button></p></article>`;
 }
 
@@ -251,8 +251,8 @@ function poster() {
   document.addEventListener('keydown', ev => { if (ev.key === 'Escape') lb.hidden = true; });
 }
 function posterRender() {
-  const list = J.slice().reverse().filter(e => e.poster), semua = poster.semua;
-  { $('#poster').innerHTML = (semua ? list : list.slice(0, 10)).map(e => `<figure><button data-img="${esc(e.poster)}" aria-label="Perbesar pengumuman ${esc(e.tanggal)}"><img loading="lazy" decoding="async" width="300" height="467" src="${esc(kecil(e.poster))}" alt="Pengumuman PLN ${esc(tgl(e.tanggal))} ${esc(e.mulai)}–${esc(e.selesai)}"></button>
+  const list = J.slice().reverse().filter(e => e.poster || e.sumber_url), semua = poster.semua;
+  { $('#poster').innerHTML = (semua ? list : list.slice(0, 10)).map(e => !e.poster ? `<figure class="tanpa-poster"><a href="${esc(amanUrl(e.sumber_url))}" rel="noopener noreferrer" target="_blank"><span>Dari berita</span><b>${esc(tgl(e.tanggal))}<br>${esc(e.mulai)}–${esc(e.selesai)}</b><small>Buka artikel sumber</small></a><figcaption>ULP ${esc(e.ulp)} · Kelompok ${esc(e.kelompok.join(', '))}</figcaption></figure>` : `<figure><button data-img="${esc(e.poster)}" aria-label="Perbesar pengumuman ${esc(e.tanggal)}"><img loading="lazy" decoding="async" width="300" height="467" src="${esc(kecil(e.poster))}" alt="Pengumuman PLN ${esc(tgl(e.tanggal))} ${esc(e.mulai)}–${esc(e.selesai)}"></button>
     <figcaption><b>${esc(tgl(e.tanggal))} · ${esc(e.mulai)}–${esc(e.selesai)}</b>${e.jenis === 'darurat' ? '<span style="color:var(--red)">DARURAT</span> · ' : ''}ULP ${esc(e.ulp)} · Kelompok ${esc(e.kelompok.join(', '))} · ${esc(e.alasan)}</figcaption></figure>`).join('')
     + (!semua && list.length > 10 ? `<p><button type="button" class="ghost" id="semua-poster">Tampilkan semua (${list.length})</button></p>` : ''); }
 }

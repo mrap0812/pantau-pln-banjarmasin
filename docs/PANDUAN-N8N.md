@@ -1,5 +1,17 @@
 # Panduan n8n: jadwal pemadaman semi-otomatis
 
+> **Mode yang aktif sekarang: jadwal dari berita, tanpa n8n dan tanpa AI.**
+> GitHub Actions (`.github/workflows/berita.yml`) menjalankan `alat/jadwal_dari_berita.py` tiap 30 menit:
+> membaca artikel "Jadwal Pemadaman Listrik di Banjarmasin …" di Banjarmasin Post/Tribun (yang menyalin
+> pengumuman PLN kedua ULP), mencocokkan blok wilayah ke `data/kelompok.json`, lalu menambah jadwal baru
+> ke `data/jadwal.json`. Kunci anti-duplikat: ULP + tanggal + jam mulai + jam selesai. Blok wilayah yang
+> tidak dikenali **tidak** ditayangkan; daftarnya ada di `data/perlu_tinjau.json` dan di ringkasan run
+> Actions. Bila muncul wilayah baru, tambahkan kelompoknya di `kelompok.json`.
+>
+> Uji manual: `python alat/jadwal_dari_berita.py --kering` (hanya menampilkan, tidak menulis).
+>
+> Jalur n8n di bawah tetap bisa dipakai kapan saja sebagai tambahan (poster/WA) karena memakai kunci yang sama.
+
 Empat jalur masuk, satu antrean, satu pintu terbit:
 
 ```

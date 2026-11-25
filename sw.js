@@ -1,6 +1,6 @@
 /* Service worker: situs tetap bisa dibuka saat sinyal/listrik padam.
    Data (JSON) diambil dari jaringan dulu, jatuh ke cache bila offline. */
-const VERSI = 'pantau-pln-v4';
+const VERSI = 'pantau-pln-v5';
 const INTI = ['./', 'index.html', 'assets/style.css', 'assets/app.js', 'assets/gim.js', 'assets/ikon.svg', 'config.json',
   'data/jadwal.json', 'data/kelompok.json', 'data/berita.json', 'data/geo/kelurahan.geojson', 'data/geo/jalan.geojson'];
 self.addEventListener('install', e => e.waitUntil(caches.open(VERSI).then(c => c.addAll(INTI)).then(() => self.skipWaiting())));

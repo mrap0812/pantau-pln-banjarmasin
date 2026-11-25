@@ -157,3 +157,8 @@ em.nanti{border:1px solid var(--line)}em.lewat{color:var(--mut);border:1px solid
 .tag{display:inline-block;font-size:11px;font-weight:700;padding:1px 6px;margin-right:6px;background:var(--red);color:#fff;vertical-align:middle}
 .segar{font-size:13px;color:var(--mut)}.segar.basi{color:#b45309;font-weight:700}
 noscript p{padding:16px;background:#fff3cd;color:#111;margin:0}
+
+.tanpa-poster a{display:grid;place-content:center;gap:6px;aspect-ratio:9/14;background:var(--soft);text-decoration:none;text-align:center;padding:12px}
+.tanpa-poster span{font-size:12px;font-weight:700;color:var(--red)}
+.tanpa-poster b{font-size:20px;font-stretch:112%}
+.tanpa-poster small{text-decoration:underline}
