@@ -1,9 +1,23 @@
 {
- "diperbarui": "2026-11-27T07:18:40.401815+00:00",
+ "diperbarui": "2026-11-27T17:36:43.730559+00:00",
  "gagal": [
   "RRI Banjarmasin: HTTPError"
  ],
  "berita": [
+  {
+   "judul": "PLN dan BIN perkuat deteksi dini ancaman infrastruktur kelistrikan di Kalselteng",
+   "url": "https://kalsel.antaranews.com/berita/547311/pln-dan-bin-perkuat-deteksi-dini-ancaman-infrastruktur-kelistrikan-di-kalselteng",
+   "sumber": "ANTARA Kalsel",
+   "terbit": "2026-11-27T13:28:50+00:00",
+   "ringkas": "PT PLN (Persero) memperkuat pengamanan infrastruktur kelistrikan di Kalimantan Selatan dan Kalimantan Tengah melalui kerja sama dengan Badan Intelijen Negara (BIN) untuk meningkatkan deteksi dini potensi gangguan demi menjaga ..."
+  },
+  {
+   "judul": "Tiga Kecamatan di Tanahbumbu Malam Ini 27 November 2026 Padam Listrik, Ini Wilayah Terdampak",
+   "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOUktRZnVwaEJCeGtqSXJDZ1FIYjM5T0RrV1IyMnFCazh1bmpBaVA4VTNBY05pYjd1LWtTVUczc0RKM0hKVExkSUFCNEdqaUZwRjFNVzd4Mk9zbHFxTGNRWWREQ2lqWV9FcVRZcmptcDB6RjdMdkxOTnZ4RVNnLTNVQjBXdzI1WmRmV0FVLTZGcTkxd0sxTE1qMFYtSzRBc0NVZkZuc3drS1hSZ0poVjcwaHgybWdUNlczb0FJTG90bGI3OWRfbUVPazN4VEZaMi02b3RiUDJmLXo?oc=5",
+   "sumber": "Tribunnews.com",
+   "terbit": "2026-11-27T07:21:02+00:00",
+   "ringkas": ""
+  },
   {
    "judul": "Jadwal Pemadaman Listrik di Banjarbaru dan Martapura, Jumat 27 November 2026, Sampai Jam 23.30 Wita",
    "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQcHVEY043b09DeVZqcXZhYnR2Qi1Jc2RNSjZDTmVENklQUDQ0MXlKUjZRMV9nMHJLU1B1WUt0SEs2TDRqR3dKYUNESHRGM0poNDJyLW1SSDdOOU9jbF8wMW1GTlIyY0ZwdV84TUZueGZBaUIzV08tQVBvYUZHSk1SalFEQ3gxaTFBOUhBVWRsVWlTQmxkRUJrS3FTcFhBT0FCTmdWVzdrbXBpcVgtRDRJdGhTNGVIMnNnc3E5RVl6b2dyZXRmLTBLRjhZdXVwRGxVZW54dklhZWJqNURIZ1hJ?oc=5",
@@ -1037,20 +1051,6 @@
    "judul": "Ombudsman Kalsel Minta Percepatan Pemulihan PLTU Asam Asam Demi Akhiri Pemadaman Bergilir",
    "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNYl8tdXFlMldqZVQ4SllIMFpNT29wQ3dFQUVLM09sd1FKOFFTV0pQdmFwMkdEVF9ua09SRHRXSkhvM2xZaHZ6TENOMDBhczlRTjJ5dG1aaVhKTnJPQmI3dUJxOEJtdXllZzZLM0w3eXFqRVk3dElVenZFU1lZVlFtS3o0Z0FoV3A1bTltbkFSMnV3akJWYnZRaHNwR0gxb2VXTEJza1hMNkhJaDlFcHkzUVl6QW9YSWROUDc5UTFiU1Npc1p3cE9vcVR0ZE9EQUw1Y0NXVkMzT1I?oc=5",
    "sumber": "Ombudsman Republik Indonesia",
-   "terbit": "2026-08-06T07:00:00+00:00",
-   "ringkas": ""
-  },
-  {
-   "judul": "Ombudsman Kalsel Harap Perbaikan PLN Selesai Lebih Cepat",
-   "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPSGhqT3BOV0laX3dHb3RLZGJpeWx2SFJqYkxRSkJsNHEwT0hVSlNac3IzT2FEaTRNRjltRDJ5TWJEanZMTGdWY251QkVfdW1MeW5GMGM3NU5fWGEyUGtWQ1ZMVERURmJJaHE2eHU3RUFpYTI2WTlsNVhxdEZiUVR6d1FEZlowdHJSQ0JuRDYzS2VCcE1XWmZHa0h1MTFPbFR4RkZnaXFkQnlLYkZC?oc=5",
-   "sumber": "Ombudsman Republik Indonesia",
-   "terbit": "2026-08-06T07:00:00+00:00",
-   "ringkas": ""
-  },
-  {
-   "judul": "Gubernur Kalsel Tagih Janji PLN Soal Pemadaman Listrik Berakhir Awal Agustus, Ternyata Molor",
-   "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNMjlxamgySDl3bXc5QzhTV2xNdjdfbGRha0ZvUHN2a0o3WEcxdHZxdTFaa3VjTm1WeDVtMGRHTmQzczNmSUdGbzJJNFZkWTFnWnNTZFVwLUY2NWx2UTk4R1RVR29FSWstNXljRFpqRFlWSTBQT2M4SE1jWlEwS3pfMVVaenFFbk1TUUNHNFY3Zl9xQnpJS0pFVGxZU0FiNDdKMUJ1NUFDYXktZENyU2JPWG5zTm5JWDB4akRuYXpKaw?oc=5",
-   "sumber": "Kompas.com",
    "terbit": "2026-08-06T07:00:00+00:00",
    "ringkas": ""
   }
