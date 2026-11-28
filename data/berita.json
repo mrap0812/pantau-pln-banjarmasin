@@ -1,9 +1,16 @@
 {
- "diperbarui": "2026-11-27T17:36:43.730559+00:00",
+ "diperbarui": "2026-11-28T01:14:05.306382+00:00",
  "gagal": [
   "RRI Banjarmasin: HTTPError"
  ],
  "berita": [
+  {
+   "judul": "Jelang Nataru, YBM PLN Ringankan Biaya Pendidikan 19 Santri Ponpes Darul Falah",
+   "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNSTJ5ZHRYcEswQUJ2Z1Q4QVJPa19iSkozUkdfcHF5bmlER2pGQ3ZSTFZ6OWNqU0tNeFlJZzNUVElaSTI5NFlyVFFTYjJ6UHV0UGF0WWVROVNyYkY4SkYtSnFQdC13SVJSRzVTU0N0N3czQmpFeTl3dzVjYjhQQWRINlpLZXBob2oza1RXVjlhYU5hRzBQcnF3TF82eUxxNGl1M1hXUndyQ1hmX0Zl?oc=5",
+   "sumber": "ShalokalIndonesia.com",
+   "terbit": "2026-11-27T23:03:39+00:00",
+   "ringkas": ""
+  },
   {
    "judul": "PLN dan BIN perkuat deteksi dini ancaman infrastruktur kelistrikan di Kalselteng",
    "url": "https://kalsel.antaranews.com/berita/547311/pln-dan-bin-perkuat-deteksi-dini-ancaman-infrastruktur-kelistrikan-di-kalselteng",
@@ -306,17 +313,24 @@
    "ringkas": ""
   },
   {
+   "judul": "PLN edukasi Keselamatan Ketenagalistrikan kepada Siswa MTsN 7 Tala",
+   "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPVnZycXZXc3ZlOXVkSVY1aWc3ckVoZFFhSHRMREM3d21RMHBsaVdPVjNqZTBwY25XZ1VUMGxyd0s3VVJvOTVsVE9zSlpqZFpTNkcxY1hVdFprMDk1UVNFanp0YjkwRVVPb0Y5ZF8tdUIzLXh3UHNpcUFwX3VDM2o0VHZCZ1hMY1dNbFFIMnR5QlBaMUotMUxXbUxQVlF0dVQ1a0R6SE5WYk02ZmJ2MnRmT0F1bV9iY3p2S0Yxa2pFLTQ4Zzc1UUhPd18xWWdmVTM0aFBNeHVOUDdtcDB3SHFrTjVtOW9GQVUxUHI2Umpn?oc=5",
+   "sumber": "kalselpos",
+   "terbit": "2026-11-18T08:00:00+00:00",
+   "ringkas": ""
+  },
+  {
    "judul": "Jadwal Pemadaman Listrik di Banjarmasin 18 November 2026, Purnasakti Mati Lampu",
    "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNdzdDcTJxTzhJbFc0UlBCeU5vdVpHU3RKNWFzNFZHNk9MTGR3UFZPTXdtbHZFVmNLaExuNVBELThuNDRfUmdTcnY0WVFwUXdYaWsxa3JDTTNBRGtnVHpKVlJjQnFlM1prbF9id18yZDY1ME1BcHF6ekFrbTg1WWo5cU1qejljVEtRcGh3Z3JGR3F6MTRTUzNlWGlSVXN2eUJ2Ni1ieVVpLTMzTFJsOGE3WkFkckliUzVBdklUa3BGNHNjOWZiSGhR?oc=5",
    "sumber": "Tribunnews.com",
-   "terbit": "2026-11-18T05:07:16+00:00",
+   "terbit": "2026-11-18T08:00:00+00:00",
    "ringkas": ""
   },
   {
    "judul": "Jadwal Listrik Padam di Banjarmasin dan Banjarbaru Hari ini, Termasuk RSUD Idaman",
    "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPNExULWZpWEE5dEItbXBzSmh2clViQjhUQXRDNFJiWnloRlA4TklhRFJscHNzcnE5SHB1dWtWOHlzV0l5ODlUZnVnZXhDalhHeEtQcnRrNHd2c1ZqeFJ1T251Q0JzSkN1RDN5SDlWdTdMWldrSFNvR1VOQVRxdWt4aVpMMlJkVWw2bERCZ1pKejhzVWw5SXo4dmo3THNWbV9iMmpWZ3pMWF8tSTZGUEN3eG1XdWYxUQ?oc=5",
    "sumber": "Warta Banjar",
-   "terbit": "2026-11-18T04:01:00+00:00",
+   "terbit": "2026-11-18T08:00:00+00:00",
    "ringkas": ""
   },
   {
@@ -327,20 +341,6 @@
    "ringkas": ""
   },
   {
-   "judul": "Dukung Pejuang Kebersihan Lingkungan, PLN salurkan Kendaraan Roda Tiga di Banjarmasin",
-   "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQWnNXV1l1dUNEdjd2ckFfRW9EdUdwZE42WVU5WXAwMno1QlI2MFhoYU0tY1RBbzJ3ZTA3VDc4WnlSR2hxQlY4RnFMVzMyczNEYXAyWnJfMFR1azJ5Y3ZlUG5QcHFHYnRqblU2cFlWdDBXd3IwYmE1VXkwd0NjNjV5SXV6THRhOXhSWFZEdHJndFN1X1N0OHQwR09uMDR5dGRDTXdCR00wZHdBbWozWEhxQXdCSTgwa0JjcnM2b1lKdkkzdld1LVg4bFhjbDJCbEMwc0lUWUY5RUZLYTdGSnEtdmRTVVYwY3Zya0ljNUxGOEhhMGVOZ09vcGZOSS02UQ?oc=5",
-   "sumber": "kalselpos",
-   "terbit": "2026-11-17T22:57:11+00:00",
-   "ringkas": ""
-  },
-  {
-   "judul": "PLN edukasi Keselamatan Ketenagalistrikan kepada Siswa MTsN 7 Tala",
-   "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPVnZycXZXc3ZlOXVkSVY1aWc3ckVoZFFhSHRMREM3d21RMHBsaVdPVjNqZTBwY25XZ1VUMGxyd0s3VVJvOTVsVE9zSlpqZFpTNkcxY1hVdFprMDk1UVNFanp0YjkwRVVPb0Y5ZF8tdUIzLXh3UHNpcUFwX3VDM2o0VHZCZ1hMY1dNbFFIMnR5QlBaMUotMUxXbUxQVlF0dVQ1a0R6SE5WYk02ZmJ2MnRmT0F1bV9iY3p2S0Yxa2pFLTQ4Zzc1UUhPd18xWWdmVTM0aFBNeHVOUDdtcDB3SHFrTjVtOW9GQVUxUHI2Umpn?oc=5",
-   "sumber": "kalselpos",
-   "terbit": "2026-11-17T22:52:19+00:00",
-   "ringkas": ""
-  },
-  {
    "judul": "PLN edukasi siswa MTsN 7 Tanah Laut tentang keselamatan ketenagalistrikan",
    "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNM3pEVEVEVnlTZGtoVFAxa0lGSVVfMnRaZzFfcV85ZWc1eVFCLXFlT1ZXUFBZQUVpblhCZVRxMUtlZkhEYmhweVNoN1JoQnNLMlpCcnNYSkNrU3d4akUwTXBEVkw1VElmQXFYT3dlRHRua1hremxWMVZhX0FHMXAyVHlGcS1KdkhwbENDTTBObDVkczV1dUdlZmMzMERYOUNYUXo1cGl1NHctYzRCbWg5cXdyNm9Od2Vl0gG-AUFVX3lxTE5IbC1yVDAyLWViNXNENm1WMmRnNjY1eF80YUpXTFM3RW1YLXo3Nm84elBkeWQ2NG1pdm1LY0Z0WVM4LTlTZTJtcS1lTjJOUlh4MHpjLWZZRVVYckVXNHlKN29fX3pLNUtsUHZfcEhITE9YcDgzLUdiN2dhMTRGZWxIR0RxN25Wa1RwWUswNk5sX1liZTlEenhxM2V4cnBhN2hrdnplc1dXcXdpZmxoZWRMVEViTGZQTEdmM1RVWlE?oc=5",
    "sumber": "ANTARA News Kalsel",
@@ -348,10 +348,24 @@
    "ringkas": ""
   },
   {
+   "judul": "Dukung Pejuang Kebersihan Lingkungan, PLN Salurkan Kendaraan Roda Tiga di Banjarmasin",
+   "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNekV4SGVOc08wVEFiYjNXZDhDNGxXTjVScm4yMk1yU242czFJNjdzUXdwMm5lRWlJOVRCOXhfanJCNWgyMU50blh5UmRGWUZRX2xYeDR1amM4TVpzUG56andIb2FSWjNRLXAtblQxenYzNUtSVl9rOVpMZ2Q0TlFELWl1U3RWN2ZyV1d6YmZTZUFVbF9ENWJEaC1zWlgtamJ2UElyTHVEcw?oc=5",
+   "sumber": "Duta TV",
+   "terbit": "2026-11-17T15:41:44+00:00",
+   "ringkas": ""
+  },
+  {
    "judul": "PLN Edukasi Keselamatan Ketenagalistrikan kepada Siswa MTsN 7 Tanah Laut",
    "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQQmZoWnAxbEZLZy1yMV80WTB2TEVIQmtyQzRhQlY5ajRiQlZmNnZTSkZiUUtRY3dGdDlVYWtrQU5PMHFTaU5YZi1hbjRoY3FsQ3F0R0YyMXFrU1N6TXZDRzNkRXk0a3JOaWFNeXAxLURuV3YyMXRPOGhPMjFxLUFPUGhjamxCcWx6TVk3OHFSWHdZRmJwb0ZUOE1pLTZIVmotVE5hYWMxMloydEpHQVNCS25n?oc=5",
    "sumber": "RadarSampit.com",
    "terbit": "2026-11-17T09:19:45+00:00",
+   "ringkas": ""
+  },
+  {
+   "judul": "PLN salurkan kendaraan roda tiga bagi pejuang lingkungan di Banjarmasin",
+   "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNX2xQVS1qZDFmWV9aWFJyTVZVZU5xQ04wTERKazYzaEpMTjk3MENiWEpNQXRzSWd5RWlENUV4NzNDRkZIOHpXQTdUVklBMXlEN2VrZFJwUHpMSFQwMTByYVV0clJ1OHVob3MyelhabERiTWJpbkswYXp0Y2htbnlyVE1nS2k3Yy1SRW05Y2NFTTY2MkFBNEhRb0NuUTRadVZ1dGN0d3Y2TERNYVVZVFlwRnMyaEtKd28?oc=5",
+   "sumber": "ANTARA News Kalteng",
+   "terbit": "2026-11-17T09:11:04+00:00",
    "ringkas": ""
   },
   {
@@ -443,6 +457,13 @@
    "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPR25zWTBzTGFUR2cxZFNXT1BGWjk1NmRCNUhGbE9rM3dlU3RLMjllRDFZTnhlYzFUQXBuN214R2J1ZThseFV1TmxKZnVodDdrZjE5NGZwQ1FhVm1Nc2RfanAyd0pBMVNBSWN4V19tdEJpdWx1SUQ3Vk00OEI5dENIT3JPZ2NzRkV2cFVuM25EVENQajdkTUE5VW40b1E5OUpWVVRmNjFKcHBObTBHdUJXMHR0UmlMRWhrSmVPRnln?oc=5",
    "sumber": "Warta Banjar",
    "terbit": "2026-11-09T08:00:00+00:00",
+   "ringkas": ""
+  },
+  {
+   "judul": "Jadwal Pemadaman Listrik di Kalsel, Jumat 6 November 2026, Banjarmasin Mati Lampu Saat Jumatan",
+   "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQT1B2RkhIeTVrb2tmeGp5M2hFT3VRSUlwUGpITFNrc0ZJQktwdmFRcS1SNWpIcHpyWjN1YTRoSENMalltZVpBVnFhNGpWMU9oZUpaVlFmQjZJWVZiZ25va21aZEM0dXQyTHV0MEl1dnhqZnd1dXY5ZFAxOUoya3QwRzMxMm5fMlNlLUVJTEVNUmoyNWF4cFFpNGo1eHliNWxpNlFjZFVXR1p3VnRobFFHa2tleTdCSnZxbjZiUTBMQzdhM3E0SXNmOFE0Z1BqOVpXRjhnWG1Hc1ljQQ?oc=5",
+   "sumber": "Tribunnews.com",
+   "terbit": "2026-11-06T08:00:00+00:00",
    "ringkas": ""
   },
   {
@@ -684,16 +705,16 @@
    "ringkas": ""
   },
   {
-   "judul": "Jadwal Pemadaman Listrik di Banjarmasin 30 September 2026, Lebih dari 20 Wilayah Terdampak",
-   "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPbXg5alpPYXpDWWRpX19XRUJqWDNER1BTeTZIalhVT2djYUN4REZicDg3azRVU2c0VTZTcUkzRzByOXFCbGR5Qjd0QXNfeGh0WDAzY3pJNFU2cmZldG9GUjk0SS0wOVJDd19rdHBFZGVVd0hXM3kwbkZSdzY3enUydDc3NEJka0ZnTjNHaXhXN3ZISEd1MlhLRUxUMVZfUUJxekZaeHFjVHZ3NGp1MlZUUTVFakxURzRScllLSUt4UjNjQU1iLUtYRnBjblR0TWs1b1JlNVJ3?oc=5",
-   "sumber": "Tribunnews.com",
+   "judul": "Cek Mati Lampu PLN UP3 Banjarmasin Hari Ini 30 September 2026: ULP Ahmad Yani, Gambut, Pelaihari",
+   "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQYVNzc25ONU5TZ1FObzVoclNMM082MGJubDZiUWRtR1NDSGtpcE5LR0pnSEp5cE1ackNOdkVJbklfcW5kTV9nRVhfeU5SLVVtSkJEQ1RZT0NTWHJSLTF4ZHRsdkFiYk1kSWRwWmk5ODhBWjZSUng5MUwzZU5Bb0dPbUdFUG9tWlpDc1MteTdrbG16MTFlRF9MSEhvSkRtamxUOWtGSFd1RDNnUGRUOEl0THE5Mm1QVHJ3bmoxSWRTdXdNdDVJWHo3VDNWRGJ3aE9N?oc=5",
+   "sumber": "TribunTrends.com",
    "terbit": "2026-09-30T07:00:00+00:00",
    "ringkas": ""
   },
   {
-   "judul": "Cek Mati Lampu PLN UP3 Banjarmasin Hari Ini 30 September 2026: ULP Ahmad Yani, Gambut, Pelaihari",
-   "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQYVNzc25ONU5TZ1FObzVoclNMM082MGJubDZiUWRtR1NDSGtpcE5LR0pnSEp5cE1ackNOdkVJbklfcW5kTV9nRVhfeU5SLVVtSkJEQ1RZT0NTWHJSLTF4ZHRsdkFiYk1kSWRwWmk5ODhBWjZSUng5MUwzZU5Bb0dPbUdFUG9tWlpDc1MteTdrbG16MTFlRF9MSEhvSkRtamxUOWtGSFd1RDNnUGRUOEl0THE5Mm1QVHJ3bmoxSWRTdXdNdDVJWHo3VDNWRGJ3aE9N?oc=5",
-   "sumber": "TribunTrends.com",
+   "judul": "Jadwal Pemadaman Listrik di Banjarmasin 30 September 2026, Lebih dari 20 Wilayah Terdampak",
+   "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPbXg5alpPYXpDWWRpX19XRUJqWDNER1BTeTZIalhVT2djYUN4REZicDg3azRVU2c0VTZTcUkzRzByOXFCbGR5Qjd0QXNfeGh0WDAzY3pJNFU2cmZldG9GUjk0SS0wOVJDd19rdHBFZGVVd0hXM3kwbkZSdzY3enUydDc3NEJka0ZnTjNHaXhXN3ZISEd1MlhLRUxUMVZfUUJxekZaeHFjVHZ3NGp1MlZUUTVFakxURzRScllLSUt4UjNjQU1iLUtYRnBjblR0TWs1b1JlNVJ3?oc=5",
+   "sumber": "Tribunnews.com",
    "terbit": "2026-09-30T07:00:00+00:00",
    "ringkas": ""
   },
@@ -726,6 +747,13 @@
    "ringkas": ""
   },
   {
+   "judul": "Pemadaman Listrik Bergilir Masih Berlangsung, DPRD Barsel Minta PLN Penuhi Kewajiban Kompensasi",
+   "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPVEEzNVQtUWVxeHV1MFdZLW4yYlFJZnlPYWQyMXlYcnJlUlJkWllVektMeHhZWURhNDJ4eE9NRnlFNVVzZmlzbnB5ZDZ0Y1ZteUVjb3lLUlliYVNkZTV4eERKbjRfb1Q2eVY3RUxRd0R2U2V1eENFRWtCZnR2aXN3N2lXVnBCVzhHRjEwdkVMOXpwdWROSEpiVzhoVEVmUmVhdDNtMXlrVkdpSTFPaFczM2hoWDNhNzlWYWVqYjZCeWVPWTBtYnZIRk1oaUg?oc=5",
+   "sumber": "BeritaKalteng.Com",
+   "terbit": "2026-09-22T07:00:00+00:00",
+   "ringkas": ""
+  },
+  {
    "judul": "PLN UP3 Banjarmasin: ULP Ahmad Yani, Banjarbaru, Marabahan, Gambut Mati Lampu Hari Ini 22 September",
    "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNZFdydXZkcnp6UVBWTHJ4Q21HZ25LZGJkY3lFMlljYkJHRHZYWmwxSTNTRFMybENBdVB4VXBOcG1ta2VKWmdwLXk2T1JpZzVIaWxTY19jNXNpcks3TlZBZktCVXlFQzljMU5RT1NpNjQxNGxjSVlFV0tCcjE5XzhzcC1lVjZsSDhkNHpHcldQQ1dnbm5DTlphS0xGczFLOVkyZ2Q0LVZBWUgya0p2c1RvaWxXVVVCVWhRZVR3bzU2ckVPSGtXQU56VEhMd1lCRjlxQW5J?oc=5",
    "sumber": "TribunTrends.com",
@@ -736,13 +764,6 @@
    "judul": "Wilayah Terdampak Pemadaman Listrik di Banjarmasin 22 September 2026, Mulai Pukul 11.00 WITA",
    "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNUEp2U1RTYUpyYkdXbk5TaXRyUTRLYlFDQzdPak1XXzAxQnBVWWVINlR0ZURYUjJ3cWl0bGxYRlVNeTBnZHNWNVc3UEZoNFgtVThaMXNtdndIeWt6WnQ4a29LbGZoWTVBVjEzR2VDbXhDemRyZFpIWnFXQUFkQldQUjFuQmNPVzFkaVB1YXdFTklFVWpoTUlYYVNFcTA4X21zVjNyV3NFY0NTSlZqOTF6bndCdlhSYnNFX2RObnB6bWxBd1Z3Ql9CTXcwdl9qU0tsQ1p0OU85cw?oc=5",
    "sumber": "Tribunnews.com",
-   "terbit": "2026-09-22T07:00:00+00:00",
-   "ringkas": ""
-  },
-  {
-   "judul": "Pemadaman Listrik Bergilir Masih Berlangsung, DPRD Barsel Minta PLN Penuhi Kewajiban Kompensasi",
-   "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPVEEzNVQtUWVxeHV1MFdZLW4yYlFJZnlPYWQyMXlYcnJlUlJkWllVektMeHhZWURhNDJ4eE9NRnlFNVVzZmlzbnB5ZDZ0Y1ZteUVjb3lLUlliYVNkZTV4eERKbjRfb1Q2eVY3RUxRd0R2U2V1eENFRWtCZnR2aXN3N2lXVnBCVzhHRjEwdkVMOXpwdWROSEpiVzhoVEVmUmVhdDNtMXlrVkdpSTFPaFczM2hoWDNhNzlWYWVqYjZCeWVPWTBtYnZIRk1oaUg?oc=5",
-   "sumber": "BeritaKalteng.Com",
    "terbit": "2026-09-22T07:00:00+00:00",
    "ringkas": ""
   },
@@ -768,16 +789,16 @@
    "ringkas": ""
   },
   {
-   "judul": "Jadwal Pemadaman Listrik di Kalsel, Minggu 13 September 2026, Banjarmasin Mati Lampu 12 Jam Lebih",
-   "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNTW56REVVZ0tlSHdKQXpBX1RWTGNyR3ZrRWQwNTZ1eWcxMHJWNDVpUm5IYXFObWgwb2xhMXlXaWJQd2FvdHBKWndaenR4azNwcVNURlNmTzJlQVl1U1hwZFI4Mm5WRHJyYTY3TWh3bGZ2QUx0UEgwaXBMODIyazVGUjV1YkxMa3ZFS3pkWEVNS1B1UldVNVhPamNnYXRfSlZxcngtcEh3a2RWU0xSYWhCRjFSaWVPdmlfbkN5al9mSkg4cnZwbGNwZ0hMcDlyVmVSWk04N0llX08xUlEtNlE?oc=5",
-   "sumber": "Tribunnews.com",
+   "judul": "PLN Kalsel-Teng Masih Berlakukan Pemadaman Bergilir, Pelanggan Tidak Mendapatkan Kompensasi Apapun",
+   "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNUWdpWERhT0U2TUJMLUZrbk1fbU94OUxYOVF2NkJMeWZwaFBxMUJ4aGtIOG5iVWMyY2JZX0lBeGxVcVpuVFU4X1JSc2NGM3VmUXJLU1hhQXJFVTE5RDhyQlhNYlpHZlJZeFFub01TQ3NOUHE4Z2l3SlA1YmhEbGNha3libEdRMHpYdVJTdlhSWUJsZFI1cDE5aXpFdy02aWF4V29PT0Zld3E0TVBaYjhmNFlJamNTYndaTEl2RnJFQmZDTXJCVVM2Mlo5SjRsZ1Bj?oc=5",
+   "sumber": "BeritaKalteng.Com",
    "terbit": "2026-09-13T07:00:00+00:00",
    "ringkas": ""
   },
   {
-   "judul": "PLN Kalsel-Teng Masih Berlakukan Pemadaman Bergilir, Pelanggan Tidak Mendapatkan Kompensasi Apapun",
-   "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNUWdpWERhT0U2TUJMLUZrbk1fbU94OUxYOVF2NkJMeWZwaFBxMUJ4aGtIOG5iVWMyY2JZX0lBeGxVcVpuVFU4X1JSc2NGM3VmUXJLU1hhQXJFVTE5RDhyQlhNYlpHZlJZeFFub01TQ3NOUHE4Z2l3SlA1YmhEbGNha3libEdRMHpYdVJTdlhSWUJsZFI1cDE5aXpFdy02aWF4V29PT0Zld3E0TVBaYjhmNFlJamNTYndaTEl2RnJFQmZDTXJCVVM2Mlo5SjRsZ1Bj?oc=5",
-   "sumber": "BeritaKalteng.Com",
+   "judul": "Jadwal Pemadaman Listrik di Kalsel, Minggu 13 September 2026, Banjarmasin Mati Lampu 12 Jam Lebih",
+   "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNTW56REVVZ0tlSHdKQXpBX1RWTGNyR3ZrRWQwNTZ1eWcxMHJWNDVpUm5IYXFObWgwb2xhMXlXaWJQd2FvdHBKWndaenR4azNwcVNURlNmTzJlQVl1U1hwZFI4Mm5WRHJyYTY3TWh3bGZ2QUx0UEgwaXBMODIyazVGUjV1YkxMa3ZFS3pkWEVNS1B1UldVNVhPamNnYXRfSlZxcngtcEh3a2RWU0xSYWhCRjFSaWVPdmlfbkN5al9mSkg4cnZwbGNwZ0hMcDlyVmVSWk04N0llX08xUlEtNlE?oc=5",
+   "sumber": "Tribunnews.com",
    "terbit": "2026-09-13T07:00:00+00:00",
    "ringkas": ""
   },
@@ -817,16 +838,16 @@
    "ringkas": ""
   },
   {
-   "judul": "Jadwal Pemadaman Listrik di Kalsel, Senin 7 September 2026, Banjarmasin Mati Lampu Pukul 12.00 Wita",
-   "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNNGNleUtfMDhvQVpjb2ktMzkwSXRiN0dVSTQ1Vlk4MWFrSXYtXzBqZVRkYzFHRjgxSkRFU213X0ZLU2ZHNG9aa05yaUs0b1BmeE5vOTJzMVg2WFJyQ1pvT0VIRHprUV85TzZ5cExMMjRvc1I0ZlhzYURSdVExSGNSbkNrOUoyMTJrSS1WTDEzbXQ4ckcyN2cyNHhDSkZhWlJDUXNQMXF4WjZtQ0dVQnhaajkxNFU2Y21Dd2l6SlFJZW9EZlVFdUV3MmRQcjJ5WTY5U3d6UG9tUEk2aEdqaEdJ?oc=5",
-   "sumber": "Tribunnews.com",
+   "judul": "PLN UP3 Banjarmasin Umumkan Mati Lampu Hari Ini 7 September 2026, ULP Gambut & Banjarbaru Terdampak",
+   "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPS3U5TEZBcVRjMmhjSmZHRDRia19fN01xd0E1NHd1aTFkVmVCWmhtRE10UC16a3Y3cFc3LWdMbXdTZ1VPS3FQVnB6QmVtUGFEOTJYRmRwVlVwa3VpSWo0bmdQZlotQXhGNGJCSWxkS21hM1UwbUtKWjV1aEJTeDNBYlVZMU5jWk5kaDRORlVjZkdienRsQ011d1Uwc19UM293ZHlpN0stNHUxTzRheVc0cFNrWEdwMlNFVmdwZzRXdjBWZGVYdDRhcnBNRXpHZVlCdzhaUw?oc=5",
+   "sumber": "TribunTrends.com",
    "terbit": "2026-09-07T07:00:00+00:00",
    "ringkas": ""
   },
   {
-   "judul": "PLN UP3 Banjarmasin Umumkan Mati Lampu Hari Ini 7 September 2026, ULP Gambut & Banjarbaru Terdampak",
-   "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPS3U5TEZBcVRjMmhjSmZHRDRia19fN01xd0E1NHd1aTFkVmVCWmhtRE10UC16a3Y3cFc3LWdMbXdTZ1VPS3FQVnB6QmVtUGFEOTJYRmRwVlVwa3VpSWo0bmdQZlotQXhGNGJCSWxkS21hM1UwbUtKWjV1aEJTeDNBYlVZMU5jWk5kaDRORlVjZkdienRsQ011d1Uwc19UM293ZHlpN0stNHUxTzRheVc0cFNrWEdwMlNFVmdwZzRXdjBWZGVYdDRhcnBNRXpHZVlCdzhaUw?oc=5",
-   "sumber": "TribunTrends.com",
+   "judul": "Jadwal Pemadaman Listrik di Kalsel, Senin 7 September 2026, Banjarmasin Mati Lampu Pukul 12.00 Wita",
+   "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNNGNleUtfMDhvQVpjb2ktMzkwSXRiN0dVSTQ1Vlk4MWFrSXYtXzBqZVRkYzFHRjgxSkRFU213X0ZLU2ZHNG9aa05yaUs0b1BmeE5vOTJzMVg2WFJyQ1pvT0VIRHprUV85TzZ5cExMMjRvc1I0ZlhzYURSdVExSGNSbkNrOUoyMTJrSS1WTDEzbXQ4ckcyN2cyNHhDSkZhWlJDUXNQMXF4WjZtQ0dVQnhaajkxNFU2Y21Dd2l6SlFJZW9EZlVFdUV3MmRQcjJ5WTY5U3d6UG9tUEk2aEdqaEdJ?oc=5",
+   "sumber": "Tribunnews.com",
    "terbit": "2026-09-07T07:00:00+00:00",
    "ringkas": ""
   },
@@ -859,6 +880,13 @@
    "ringkas": ""
   },
   {
+   "judul": "PLN dan Damkar Banjarmasin kerja sama melalui Program Siaga perkuat kesiapsiagaan kebakaran",
+   "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQOXZYQXRTVEJDTmlvb3FEbjJVZEFVYXlCQzJkUU13dXBxOW9IcU1ZVFBMRW5QbFFsLWFpVW9HM05qSU5lYl85RmtJdml1b0RHN1QzVzZEUWdHTjhnbzkyMjNNN3YwZzJkQ3VmdHc2a00wTlg0aWdQRmJCT3VrQlZZbEswUS1jM09neFBXODdvSk4taXktckFqWFZmSjB6d3FQN3FOQWNsNk8xbFZBTlZyTzREVlF6cEU4bklzRG5QLTc0aXpvemZPOVZWMDBlbHlh0gHWAUFVX3lxTE1jbkVMcWxCQWtCcl9Zak5sbHdlajhfbWJVMUZHTkx6VElYM2dkMVh4b3VKOTBvU3k3b2RlNjFMRXZfOU55Z2t1V3R2TkdNV2VpLWV5cEdHNHNCLXNoSmJxV3dTeE1BVE54bHNZSHF3OFZLYTV2anFkRUhoc0ZIeVhTbFZKaF9oSU9UWlctMmlCdzdpaHl1WXpabUlkVTZlc09GN1FsaXpPS1Z4b1FpUlJENFlQbjAwLWptak1hekxRM2pXSWNsaHlTUDVUR1gxOW9VSlI4QWc?oc=5",
+   "sumber": "ANTARA News Kalsel",
+   "terbit": "2026-09-01T07:00:00+00:00",
+   "ringkas": ""
+  },
+  {
    "judul": "Jadwal Pemadaman Listrik PLN UP3 Banjarmasin Hari Ini 1 September 2026, Barito Kuala Padam 5,5 Jam",
    "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOSzhqWEp3NkZaM1M1T2VxUVNKT2g2S3V3aXVHdmRuOTh4TDlJNHV4RmxXNzI3Uzh6Vm5FSl82b0NrbXo0YXV2UjNnTE14Z0dqZng0WExldXBlb3IwaDFTYnBlUmhSNzNvREdJalZyOXVBeTdOMXVWdllodTdQWnd2MVpOMHRXNVVBa0NiMkpzb3VFLWJaVHRGb0cza1gtTUNXUlZWbVA4SWlNQzZ4M1RJRVpqejJ2dzNyMlZIcXRWZG1Va0J2NGJnRjliVnA2dnA2OXlPZA?oc=5",
    "sumber": "TribunTrends.com",
@@ -869,13 +897,6 @@
    "judul": "Jadwal Pemadaman Listrik di Banjarmasin 1 September 2026, Tempat Hiburan Karaoke Terdampak",
    "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPSEt0LW5IYkpzaVVRM2VDbGlybDVjenB3WEtYeU1VZ0RCNHlwRUVtd19xTUxqNGViMzUyZ0lqWVVSNEtCd1Jrb1NuZEdVXzZUWUNFMmNlSm54X3NhOEhfaU9uZW5OMmJsYXVhWUQ0UWxaYXVTamZFWlpyRU1aTFdMTldXWHpXb2JkSEU5c1ZXT0IwYTYwU0lZalBVbWpIbGxLcmY4UmctOWx1YjlpMmVQVVpCNC1IdnBRNWFtRkxuZXVzaHJJNGwwakZZRnQ1VmpoUjFQNmtn?oc=5",
    "sumber": "Tribunnews.com",
-   "terbit": "2026-09-01T07:00:00+00:00",
-   "ringkas": ""
-  },
-  {
-   "judul": "PLN dan Damkar Banjarmasin kerja sama melalui Program Siaga perkuat kesiapsiagaan kebakaran",
-   "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQOXZYQXRTVEJDTmlvb3FEbjJVZEFVYXlCQzJkUU13dXBxOW9IcU1ZVFBMRW5QbFFsLWFpVW9HM05qSU5lYl85RmtJdml1b0RHN1QzVzZEUWdHTjhnbzkyMjNNN3YwZzJkQ3VmdHc2a00wTlg0aWdQRmJCT3VrQlZZbEswUS1jM09neFBXODdvSk4taXktckFqWFZmSjB6d3FQN3FOQWNsNk8xbFZBTlZyTzREVlF6cEU4bklzRG5QLTc0aXpvemZPOVZWMDBlbHlh0gHWAUFVX3lxTE1jbkVMcWxCQWtCcl9Zak5sbHdlajhfbWJVMUZHTkx6VElYM2dkMVh4b3VKOTBvU3k3b2RlNjFMRXZfOU55Z2t1V3R2TkdNV2VpLWV5cEdHNHNCLXNoSmJxV3dTeE1BVE54bHNZSHF3OFZLYTV2anFkRUhoc0ZIeVhTbFZKaF9oSU9UWlctMmlCdzdpaHl1WXpabUlkVTZlc09GN1FsaXpPS1Z4b1FpUlJENFlQbjAwLWptak1hekxRM2pXSWNsaHlTUDVUR1gxOW9VSlI4QWc?oc=5",
-   "sumber": "ANTARA News Kalsel",
    "terbit": "2026-09-01T07:00:00+00:00",
    "ringkas": ""
   },
@@ -947,6 +968,13 @@
    "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQR3JCMGRCNHBseGozZFpyQkhYVV9lSTVibkhPdlRfWFRjb0l3UFdUNDVhVXhvaDZ3R203bDBmVWM2eDZtT3FfRWd1MEctRVpXT1BRLW5zdlZaYnE1anp6dnpZM0E5MkltZjdPaWdtZnQ1Q3pVZm5GT0hTUjVIS1ZCay1ZUWo5cGwxMTVJeVc0VDktc1ZlY21wYVA3MWtkSm9najB2R3gzaXVvcVRLX25tU05MYlAtRk9jM2lfS0hhNlpVN081MDFManNneDNNT0VmUXJLM0FuZlI4dDNkaktB?oc=5",
    "sumber": "Tribunnews.com",
    "terbit": "2026-08-14T07:00:00+00:00",
+   "ringkas": ""
+  },
+  {
+   "judul": "Legalitas PLN Diuji Di PTUN Banjarmasin",
+   "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPTTVWc0xqSGNtOHlfRVpRdnN0bmp4bGJsVHgwdzZpUkpFZ0F3azhNOFVoeFE0WnlXYUpGQm80Q2Nvc0I3YWlUR216VjM1dTJ2NVFqN0tVRDlyb3M4ZWFMZEFEdU1QZ3ctWUJYdWxRcE90Y1ZCUEdUVjZEMlgybmhsbw?oc=5",
+   "sumber": "Kalimantan Post",
+   "terbit": "2026-08-13T07:00:00+00:00",
    "ringkas": ""
   },
   {
@@ -1024,34 +1052,6 @@
    "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQdHUweGNEaXZ3ZkJKUUV5anVfVDZoZUlpdG9MUmZLUXVfR29jRTdTMGdjSHhkMkNUejJCdThaSXJlLWpBN3Q0Z2JkLVhYX2lJSC1zalk2TDJ3dTBWQlZ6UEJ2VUJ1SHhSZ2NoLUo2LUFmVzFYS3c2eF9iZ19JUks1YzU3VVoyMHprMU45NFhKQnRNaHp2dVMybFFvSkY4SS1xQTNoLTJFSlB5VWtFV0pQdU9wTjV3RGVNRTg1dmtfMnJCT1JVbWtF0gHMAUFVX3lxTFBmNFlLenVSdWxmMDJCSkNzNVdTM0p0czM2X3JZdXFpQURuYU5sbmQ1M2pXcG1WTzhQSUtBUzNJdXFWcEZJX3pmbDNHUFhmLXJUX2c0NExmejF2d21LRTZmcnhqTkFaUjVTWWRlOUlXeHdWazRzV24xLVBCeDg2YUJiQS1aek8xSXMzOGlEWVJ5aFVzY3gtMGZIRDhreVpHLVFfbEJXdzVuQWlOVkxnS2pieWdGM3hza09iSWdfLXI0aW15bGlacEhJR21nYQ?oc=5",
    "sumber": "detikcom",
    "terbit": "2026-08-07T07:00:00+00:00",
-   "ringkas": ""
-  },
-  {
-   "judul": "Sistem kelistrikan Kalselteng masih status siaga",
-   "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOLU02dkdjdVloa0pES3VQdkNnb2NFRjJxVFdDNmVwY3FOSGRHZ2I4SHMzdVB2MHlsNHRBcFotSzhGUEcxVnZLcFVkTnIxWkNMUXNaR3pTX3Rreks5X29ad1Bud3VUZlpQNk1QWFdTTG43aDFRdHk4ZE93UmRMS3E3S2luc3lpeWxQa3F2LTZ5RFpWM2ZNdmRB0gGcAUFVX3lxTE9aMk9xQkpQcEl0Ujg1ZG9LY1RleE5sMEhaR19hYXpveEVnd3NzU21qOThPNC1EZm8yN3ZkRHJpcUxydjVIdkxxUGNCaFpQVG5KbUJVQVI5ZUZqemgzX001cmp3bXBBVFR4ck9RU0FzdWhvbU1HNC1rNU5SZzFyNlRDYWlNa0pzaUs1MlpSQW1yX3RON1kzZHBDaklvRA?oc=5",
-   "sumber": "ANTARA News Kalsel",
-   "terbit": "2026-08-07T07:00:00+00:00",
-   "ringkas": ""
-  },
-  {
-   "judul": "Jadwal Pemadaman Listrik di Kalsel, Kamis 6 Agustus 2026, Seluruh Wilayah Banjarmasin Mati Lampu",
-   "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOWGdwWTdabmszYUJLRzU5UXZNNlJ2NjJhd2h2TW0zLW1CMDZZbld2a1FtRTNsYl8xX1pWZVRqNFRUWmpRQkJfS1llbVhsQ1phV3o5NWpMMmhET05rU0d4Rl9tbVJDOWJBRXFJV0xSNUJNOU1oTHdXcXNPNmZCelNCWF9MSEdmZ3ljeTV2NUZQOV9pWHpEakhfN1pRcUVwNzFwT3FydkxmTmlUQWxtdkpZdmppNkZxT2E4UEY2TjRQZm5nbUl0VHJORFctaEdEczFlRFFGeGUyWXYzemlj?oc=5",
-   "sumber": "Tribunnews.com",
-   "terbit": "2026-08-06T07:00:00+00:00",
-   "ringkas": ""
-  },
-  {
-   "judul": "Pemicu Pemadaman Listrik Bergilir, Ombudsman Kalsel Minta Perbaikan PLTU Asam-Asam Dipercepat",
-   "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPN2pEakQySnRBZXVzLXVyaUhQSlBuYmVqN2hmVTRXRjdpaThEUENHYXJYb1RNNkY1ZmRwRHZFRWtLc0g1X1VuRWxEcEVnVG16UFdwZFI5Q2hWaG9JSjFmVHV0cnlPRHNQR0Y5aUwwM1hRWnJjR3g1ekdoQVpoZTM5c19LQmttWUFYaGgwMVFscjRkRWdrTUtXaWN4bUxOTDJyR1VMZzJMZjFhd0NqNmJLZGRSRGVBTDVtRUtlSUlIS2gwN1loV3JtT0FhYzB2czVlS1hXbkozOXN0VjVT?oc=5",
-   "sumber": "Ombudsman Republik Indonesia",
-   "terbit": "2026-08-06T07:00:00+00:00",
-   "ringkas": ""
-  },
-  {
-   "judul": "Ombudsman Kalsel Minta Percepatan Pemulihan PLTU Asam Asam Demi Akhiri Pemadaman Bergilir",
-   "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNYl8tdXFlMldqZVQ4SllIMFpNT29wQ3dFQUVLM09sd1FKOFFTV0pQdmFwMkdEVF9ua09SRHRXSkhvM2xZaHZ6TENOMDBhczlRTjJ5dG1aaVhKTnJPQmI3dUJxOEJtdXllZzZLM0w3eXFqRVk3dElVenZFU1lZVlFtS3o0Z0FoV3A1bTltbkFSMnV3akJWYnZRaHNwR0gxb2VXTEJza1hMNkhJaDlFcHkzUVl6QW9YSWROUDc5UTFiU1Npc1p3cE9vcVR0ZE9EQUw1Y0NXVkMzT1I?oc=5",
-   "sumber": "Ombudsman Republik Indonesia",
-   "terbit": "2026-08-06T07:00:00+00:00",
    "ringkas": ""
   }
  ]
